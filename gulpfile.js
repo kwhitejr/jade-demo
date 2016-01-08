@@ -16,7 +16,8 @@ gulp.task('myTask2', function () {
 
 // Compile template files.
 gulp.task('template', function () {
-  gulp.src('./templates');
+  gulp.src('./templates/*.jade')
+    .pipe(gulp.dest('./public'));
 });
 
 gulp.task('default', ['myTask', 'myTask2', 'template']);
