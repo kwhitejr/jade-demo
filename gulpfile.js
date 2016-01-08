@@ -15,9 +15,18 @@ gulp.task('myTask2', function () {
 // });
 
 // Compile template files.
+var data = require('./data.json');
 gulp.task('template', function () {
   gulp.src('./templates/*.jade')
+    .pipe(jade({
+      pretty: true,
+      locals: data
+    }))
     .pipe(gulp.dest('./public'));
+});
+
+gulp.task('watch', function () {
+  gulp.watch(['./data.json', './templates/*.jade'], ['default']);
 });
 
 gulp.task('default', ['myTask', 'myTask2', 'template']);
